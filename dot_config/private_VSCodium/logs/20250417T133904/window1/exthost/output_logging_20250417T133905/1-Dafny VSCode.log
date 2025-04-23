@@ -1,0 +1,2 @@
+Language server: {"command":"/usr/bin/dotnet","args":["/home/emanuel/.vscode-oss/extensions/dafny-lang.ide-vscode-3.4.4/out/resources/4.10.0/github/dafny/Dafny.dll","server","--verify-on:Change","--verification-time-limit:20","--cache-verification=0","--cores:11","--notify-ghostness:true","--notify-line-verification-status:true"]}
+Dafny is ready

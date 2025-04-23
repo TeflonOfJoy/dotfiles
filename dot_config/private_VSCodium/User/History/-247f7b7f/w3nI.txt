@@ -1,0 +1,303 @@
+// Test di base e verifica della funzionalità standard
+tests[0].s = "25";
+tests[0].b = 10;
+tests[0].res = 1;
+tests[0].num = 25;
+
+// Test con base non valida (minore di 2)
+tests[1].s = "123";
+tests[1].b = 1;
+tests[1].res = 0;
+tests[1].num = 0;
+
+// Test con base non valida (maggiore di 36)
+tests[2].s = "123";
+tests[2].b = 37;
+tests[2].res = 0;
+tests[2].num = 0;
+
+// Test con stringa vuota
+tests[3].s = "";
+tests[3].b = 10;
+tests[3].res = 0;
+tests[3].num = 0;
+
+// Test con soli spazi
+tests[4].s = "   ";
+tests[4].b = 10;
+tests[4].res = 0;
+tests[4].num = 0;
+
+// Test con numeri negativi
+tests[5].s = "-123";
+tests[5].b = 10;
+tests[5].res = 1;
+tests[5].num = -123;
+
+// Test con numeri positivi espliciti
+tests[6].s = "+456";
+tests[6].b = 10;
+tests[6].res = 1;
+tests[6].num = 456;
+
+// Test con spazi iniziali
+tests[7].s = "   789";
+tests[7].b = 10;
+tests[7].res = 1;
+tests[7].num = 789;
+
+// Test con caratteri non validi dopo il numero
+tests[8].s = "123abc";
+tests[8].b = 10;
+tests[8].res = 1;
+tests[8].num = 123;
+
+// Test con base esadecimale e lettere maiuscole
+tests[9].s = "1A2B";
+tests[9].b = 16;
+tests[9].res = 1;
+tests[9].num = 6699; // 1A2B in base 16 = 6699 in base 10
+
+// Test con base esadecimale e lettere minuscole (spec dice solo maiuscole!)
+tests[10].s = "1a2b";
+tests[10].b = 16;
+tests[10].res = 1;
+tests[10].num = 1; // Dovrebbe fermarsi al '1' perché 'a' non è valido secondo la specifica
+
+// Test con carattere di segno dopo spazi
+tests[11].s = "  -42";
+tests[11].b = 10;
+tests[11].res = 1;
+tests[11].num = -42;
+
+// Test con zero
+tests[12].s = "0";
+tests[12].b = 10;
+tests[12].res = 1;
+tests[12].num = 0;
+
+// Test con '+' isolato (non dovrebbe essere una cifra valida)
+tests[13].s = "+";
+tests[13].b = 10;
+tests[13].res = 0;
+tests[13].num = 0;
+
+// Test con '-' isolato (non dovrebbe essere una cifra valida)
+tests[14].s = "-";
+tests[14].b = 10;
+tests[14].res = 0;
+tests[14].num = 0;
+
+// Test con cifre valide in base 36
+tests[15].s = "Z";
+tests[15].b = 36;
+tests[15].res = 1;
+tests[15].num = 35; // Z è 35 in base 36
+
+// Test con carattere al limite dell'alfabeto
+tests[16].s = "A";
+tests[16].b = 11;
+tests[16].res = 1;
+tests[16].num = 10; // A è 10 in base 11
+
+// Test con numeri grandi (verificare gestione int)
+tests[17].s = "2147483647"; // INT_MAX
+tests[17].b = 10;
+tests[17].res = 1;
+tests[17].num = 2147483647;
+
+// Test possibile overflow - la specifica dice che non deve essere rilevato
+tests[18].s = "2147483648"; // Oltre INT_MAX
+tests[18].b = 10;
+tests[18].res = 1;
+tests[18].num = -2147483648; // Dovrebbe causare overflow silenzioso a INT_MIN
+
+// Test numeri negativi grandi
+tests[19].s = "-2147483648"; // INT_MIN
+tests[19].b = 10;
+tests[19].res = 1;
+tests[19].num = -2147483648;
+
+// Test con segno e nessun numero valido
+tests[20].s = "-abc";
+tests[20].b = 10;
+tests[20].res = 0;
+tests[20].num = 0;
+
+// Test con numero binario
+tests[21].s = "101010";
+tests[21].b = 2;
+tests[21].res = 1;
+tests[21].num = 42; // 101010 in binario = 42
+
+// Test con numero ottale
+tests[22].s = "52";
+tests[22].b = 8;
+tests[22].res = 1;
+tests[22].num = 42; // 52 in ottale = 42
+
+// Test con numeri oltre la base specificata
+tests[23].s = "9";
+tests[23].b = 8;
+tests[23].res = 0;
+tests[23].num = 0; // 9 non è una cifra valida in base 8
+
+// Test con cifre valide seguite da spazi
+tests[24].s = "42   ";
+tests[24].b = 10;
+tests[24].res = 1;
+tests[24].num = 42;
+
+// Test con spazi tra segno e cifre (non valido secondo la specifica)
+tests[25].s = "- 42";
+tests[25].b = 10;
+tests[25].res = 0;
+tests[25].num = 0;
+
+// Test con doppio segno (non valido)
+tests[26].s = "+-42";
+tests[26].b = 10;
+tests[26].res = 1;
+tests[26].num = 0; // Dovrebbe fermarsi a '+' e non trovare cifre valide
+
+// Test con caratteri speciali
+tests[27].s = "$123";
+tests[27].b = 10;
+tests[27].res = 0;
+tests[27].num = 0;
+
+// Test multiple basi
+tests[28].s = "FF";
+tests[28].b = 16;
+tests[28].res = 1;
+tests[28].num = 255;
+
+tests[29].s = "FF";
+tests[29].b = 15;
+tests[29].res = 1;
+tests[29].num = 225; // FF in base 15 = 15*15 + 15 = 225
+
+// Test NULL string (potenziale crash)
+tests[30].s = NULL;
+tests[30].b = 10;
+tests[30].res = 0;
+tests[30].num = 0;
+
+// Test con base al limite inferiore
+tests[31].s = "101";
+tests[31].b = 2;
+tests[31].res = 1;
+tests[31].num = 5; // 101 in binario = 5
+
+// Test con base al limite superiore
+tests[32].s = "ZZ";
+tests[32].b = 36;
+tests[32].res = 1;
+tests[32].num = 1295; // ZZ in base 36 = 35*36 + 35 = 1295
+
+// Test con spazi e segno doppio
+tests[33].s = "  ++42";
+tests[33].b = 10;
+tests[33].res = 1;
+tests[33].num = 0; // Dopo gli spazi trova '+', poi un altro '+' che non è una cifra valida
+
+// Test cifre non valide nella base data
+tests[34].s = "12345";
+tests[34].b = 5;
+tests[34].res = 1;
+tests[34].num = 1234; // Solo "1234" è valido in base 5, il "5" non è valido
+
+// Test con stringa che inizia con cifra 0
+tests[35].s = "0123";
+tests[35].b = 10;
+tests[35].res = 1;
+tests[35].num = 123;
+
+// Test con valore esattamente INT_MAX
+tests[36].s = "7FFFFFFF";
+tests[36].b = 16;
+tests[36].res = 1;
+tests[36].num = 2147483647;
+
+// Test con valore esattamente INT_MIN
+tests[37].s = "-80000000";
+tests[37].b = 16;
+tests[37].res = 1;
+tests[37].num = -2147483648;
+
+// Test con overflow in base elevata
+tests[38].s = "ZZZZZZ";
+tests[38].b = 36;
+tests[38].res = 1;
+// Il risultato esatto dipende da come l'overflow viene gestito
+
+// Test con zero iniziale seguito da cifre
+tests[39].s = "0042";
+tests[39].b = 10;
+tests[39].res = 1;
+tests[39].num = 42;
+
+// Test con segno seguito immediatamente da zero
+tests[40].s = "-0";
+tests[40].b = 10;
+tests[40].res = 1;
+tests[40].num = 0;
+
+// Test con segno "+" seguito immediatamente da zero
+tests[41].s = "+0";
+tests[41].b = 10;
+tests[41].res = 1;
+tests[41].num = 0;
+
+// Test con solo spazi e segno
+tests[42].s = "  +";
+tests[42].b = 10;
+tests[42].res = 0;
+tests[42].num = 0;
+
+// Test con solo spazi e segno negativo
+tests[43].s = "  -";
+tests[43].b = 10;
+tests[43].res = 0;
+tests[43].num = 0;
+
+// Test con numeri che potrebbero causare overflow durante la conversione
+tests[44].s = "1000000000";
+tests[44].b = 16;
+tests[44].res = 1;
+// Il risultato esatto dipende da come l'overflow viene gestito
+
+// Test con stringhe esattamente al limite di cifre valide per varie basi
+tests[45].s = "123456789";
+tests[45].b = 10;
+tests[45].res = 1;
+tests[45].num = 123456789;
+
+// Test handling di caratteri non ASCII
+tests[46].s = "é123";
+tests[46].b = 10;
+tests[46].res = 0;
+tests[46].num = 0;
+
+// Test con caratteri di controllo
+tests[47].s = "\t123";
+tests[47].b = 10;
+tests[47].res = 1;
+tests[47].num = 123; // Presumibilmente tab è trattato come spazio bianco
+
+// Test con un singolo carattere limite per varie basi
+tests[48].s = "9";
+tests[48].b = 10;
+tests[48].res = 1;
+tests[48].num = 9;
+
+tests[49].s = "9";
+tests[49].b = 9;
+tests[49].res = 0;
+tests[49].num = 0; // 9 non è valido in base 9
+
+// Test con zero come prima cifra nella stringa
+tests[50].s = "0123";
+tests[50].b = 8;
+tests[50].res = 1;
+tests[50].num = 83; // 0123 in base 8 = 83 in base 10
