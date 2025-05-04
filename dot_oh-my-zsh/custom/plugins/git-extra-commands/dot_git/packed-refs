@@ -1,0 +1,4 @@
+# pack-refs with: peeled fully-peeled sorted 
+458c5422fcefa91e7c8bb9d7f3388a9768b7f8ba refs/remotes/origin/main
+6ca818eb17ea3f7f0d30584e9e200a389bdbb704 refs/remotes/origin/pre-commit-ci-update-config
+d6a4290598f33cc61687f1668519256fbab4eab9 refs/tags/v2024.11.19
