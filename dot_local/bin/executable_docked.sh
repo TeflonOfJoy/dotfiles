@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # Define the vendor and product ID of the Logi Bolt Receiver
 VENDOR_ID="046d"
@@ -12,5 +12,5 @@ CURSOR_EDGE_SWITCH_SCRIPT="$HOME/.local/bin/cursor_edge_switch.sh"
 if lsusb | grep -q "$VENDOR_ID:$PRODUCT_ID"; then
     sleep 10
     # Start each script in a separate Konsole tab using zsh explicitly
-    konsole --tabs-from-file ./ktabs --background-mode &
+    konsole --tabs-from-file $HOME/.config/ktabs --background-mode &
 fi

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 # Webcam status notifier for MSI Modern 15
 # Run this script via KDE keyboard shortcut (XF86WebCam key)
 

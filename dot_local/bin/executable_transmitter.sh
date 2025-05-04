@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 ffmpeg -f pulse -i "remote.monitor" \
        -acodec pcm_s16le -ar 48000 -ac 2 \
        -f s16le \
