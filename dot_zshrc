@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=en_US.utf8
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,6 +71,7 @@ ZSH_THEME="acenoster/acenoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
+	git-extra-commands
         aws
         git-prompt
         virtualenv
@@ -108,4 +109,5 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
 
 eval $(keychain --eval --quiet digitalocean github gitlab)
 
-fastfetch
+fastfetch --color-title "#E2D9F3"
+
